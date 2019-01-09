@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import Card, Subject
+from .models import Subject
 
 # Register your models here.
-admin.site.register(Card)
+# admin.site.register(Card)
 admin.site.register(Subject)
