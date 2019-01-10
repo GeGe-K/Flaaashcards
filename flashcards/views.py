@@ -21,31 +21,33 @@ def profile(request):
 @login_required(login_url='/accounts/login/')
 def update_card(request):
     current_user=request.user
-    cards = Flashcards.objects.filter(username=request.user).first()
+    cards = Flashcard.objects.filter(username=request.user).first()
 
     #Allows a user to update the flash cards
     if request.method == 'POST':
-        form = CardForm(request.POST,instance=card,files=request.FILES)
+        form = CardForm(request.POST,instance=cards,files=request.FILES)
 
         #Saves the data from the form into the database
         if form.is_valid():
-            card = form.save(commit=False)
-            card.username = current_user
-            card.save()
+            cards = form.save(commit=False)
+            cards.username = current_user
+            cards.save()
         return redirect('index')
     else:
         form = CardForm()
-    return render (request, 'update_card.html',{"form":form,"card":card})
+    return render(request, 'update_card.html',{"form":form,"cards":cards})
 
+@login_required(login_url='/accounts/login/')
 def post_card(request):
     current_user=request.user
+    card = Flashcard.objects.filter(username=request.user).first()
 
     # Allows users to post new cards
     if request.method == 'POST':
         form = PostCard(request.POST,instance=card,files=request.FILES)
-
         if form.is_valid():
             card = form.save(commit=False)
+            card.date=dt.date.today()
             card.username = current_user
             card.save()
         return redirect('index')

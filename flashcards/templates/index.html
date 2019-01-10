@@ -46,7 +46,7 @@
                     <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="{% url 'profile' %}">Profile</a></li>
                     <li><a href="{% url 'update' %}"> Update Card</a></li>
-                    <li><a href="{% url 'post' %}"></a></li>
+                    <li><a href="{% url 'post' %}">Post Card</a></li>
                     <li><a href="/logout">Logout</a></li>
                     <li><a href="accounts/login">Login/Register</a></li>
 				<!-- /Main navigation -->
@@ -63,7 +63,7 @@
 						<div class="home-content">
 							<h1 class="white-text">Our aim is make your study experience easier</h1>
 							<p class="white-text">Do you use cards to go study and you keep loosing them.We aim to solve that</p>
-							<button class="white-btn">Get Started!</button>
+							<button class="white-btn"><a href="{% url 'post' %}">Get Started!</a></button>
 						</div>
 					</div>
 				</div>
@@ -75,6 +75,7 @@
 	<!-- /Header -->
 
 	<!-- About -->
+	{% for card in cards %}
 	<div id="about" class="section md-padding">
 		<div class="container">
 			<div class="row">
@@ -83,11 +84,16 @@
 				</div>
 				<div class="col-md-4">
 					<div class="about">
-						<h3>Fully Customizible</h3>
-						<p>Maecenas tempus tellus eget condimentum rhoncus sem quam semper libero sit amet.</p>
-						<a href="#">Read more</a>
+						<h3>{{card.title}}</h3>
+						<p>{{card.description}}</p>
+						<a href="">Delete Card</a>
 					</div>
 				</div>
+				{% empty %}
+    
+				<h3 class="text-center">There are no Projects yet</h3>
+			
+			   {% endfor %}
 			</div>
 		</div>
 	</div>
@@ -97,9 +103,6 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="footer-logo">
-						<a href="index.html"><img src="img/logo-alt.png" alt="logo"></a>
-					</div>
 					<ul class="footer-follow">
 						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
 						<li><a href="#"><i class="fa fa-twitter"></i></a></li>

@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+            <div class="card text-center">
+                    <div class="card-body">
+                      <h5 class="card-title">Submit Your Card</h5>
+                        <hr>
+                        <form class="" action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% bootstrap_form form %}
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" value="Submit Project">
+                        </div>
+                     </form>
+                </div>
+            </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+{% endblock %}

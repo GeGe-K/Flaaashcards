@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content%}
+{% for card in cards %}
+<div class="row">
+        <div class="section-header text-center">
+            <h2 class="title">Your study cards arranged accoring to courses</h2>
+        </div>
+        <div class="col-md-4">
+            <div class="about">
+                <h3>{{card.title}}</h3>
+                <p>{{card.description}}</p>
+                <a href="">Delete Card</a>
+            </div>
+        </div>
+        {% empty %}
+
+        <h3 class="text-center">There are no Projects yet</h3>
+    
+       {% endfor %}
+    </div>
+{%endblock%}
